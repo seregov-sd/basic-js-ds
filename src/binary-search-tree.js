@@ -40,7 +40,7 @@ class BinarySearchTree {
     }
 
     has(data) {
-        let value = this.getValueTop(data);
+        const value = this.getValueTop(data);
         if (value !== null && value.data === data) {
             return true;
         }
@@ -83,19 +83,32 @@ class BinarySearchTree {
         return value;
     }
 
-    remove(/* data */) {
+    remove (data) {
+        let tempTree = new BinarySearchTree();
+        tempTree = this.clone(data, this.top, tempTree);
+        this.top = tempTree.top;
+        this.size = tempTree.size;
+    }
 
+    clone(data, top, tempTree) {
+        if (top !== null) {
+            if (top.data !== data) {
+                tempTree.add(top.data);
+            }
+            this.clone(data, top.left, tempTree);
+            this.clone(data, top.right, tempTree);
+        }
+        return tempTree;
     }
 
     min() {
-        throw new NotImplementedError('Not implemented');
-        // remove line with error and write your code here
+
     }
 
     max() {
-        throw new NotImplementedError('Not implemented');
-        // remove line with error and write your code here
+
     }
+
 }
 
 // const tree = new BinarySearchTree();
@@ -108,9 +121,17 @@ class BinarySearchTree {
 // tree.add(31);
 // tree.add(1);
 // console.log(tree.find(54).data, 54);
-// // console.log(tree.has(8), true);
 // console.log(tree.find(7), null);
 // // console.log(tree.has(4), false);
+// tree.remove(14);
+// console.log(tree);
+// tree.remove(8);
+// console.log(tree);
+// tree.remove(9);
+// console.log(tree);
+// console.log(tree);
+// console.log(tree.min(), 1);
+// console.log(tree.max(), 54);
 
 module.exports = {
     BinarySearchTree
