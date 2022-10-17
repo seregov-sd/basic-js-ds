@@ -102,11 +102,19 @@ class BinarySearchTree {
     }
 
     min() {
-
+        let top = this.top;
+        while (top.left !== null) {
+            top = top.left;
+        }
+        return top.data;
     }
 
     max() {
-
+        let top = this.top;
+        while (top.right !== null) {
+            top = top.right;
+        }
+        return top.data;
     }
 
 }
@@ -122,7 +130,7 @@ class BinarySearchTree {
 // tree.add(1);
 // console.log(tree.find(54).data, 54);
 // console.log(tree.find(7), null);
-// // console.log(tree.has(4), false);
+// console.log(tree.has(4), false);
 // tree.remove(14);
 // console.log(tree);
 // tree.remove(8);
@@ -131,6 +139,18 @@ class BinarySearchTree {
 // console.log(tree);
 // console.log(tree);
 // console.log(tree.min(), 1);
+// console.log(tree.max(), 54);
+// const tree = new BinarySearchTree();
+// tree.add(9);
+// tree.add(14);
+// tree.add(54);
+// tree.add(2);
+// tree.add(6);
+// tree.add(8);
+// tree.add(31);
+// tree.add(1);
+// tree.remove(6);
+// tree.remove(2);
 // console.log(tree.max(), 54);
 
 module.exports = {
